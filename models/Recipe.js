@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 // Define the schema for ingredients
 const ingredientSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  amount: { type: String, required: true },
+  item: { type: String, required: true },
+  quantity: { type: String, required: true },
 });
 
 // Define the schema for photos
@@ -14,7 +14,7 @@ const photoSchema = new mongoose.Schema({
 
 // Main Recipe schema
 const recipeSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: true,
     trim: true,
@@ -26,8 +26,8 @@ const recipeSchema = new mongoose.Schema({
   ingredients: [ingredientSchema],
   instructions: [
     {
-      type: String,
-      required: true,
+      step: { type: Number, required: true },
+      text: { type: String, required: true },
     },
   ],
   photos: [photoSchema],
@@ -40,6 +40,10 @@ const recipeSchema = new mongoose.Schema({
     max: 5,
   },
   notes: String,
+  author: String,
+  recipeYield: String,
+  prepTime: String,
+  cookTime: String,
   createdAt: {
     type: Date,
     default: Date.now,
